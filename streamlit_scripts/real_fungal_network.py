@@ -10,6 +10,8 @@ import streamlit as st
 
 from stpyvista import stpyvista
 
+import subprocess
+
 ## Check if xvfb is already running on the machine
 is_xvfb_running = subprocess.run(["pgrep", "Xvfb"], capture_output=True)
 if is_xvfb_running.returncode == 1:
