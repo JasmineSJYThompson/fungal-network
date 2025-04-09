@@ -31,6 +31,9 @@ with st.sidebar:
     #st.success("Done!")
     #st.button("Rerun")
 
+import os
+print(os.getwd())
+
 data = loadmat(f"{folder}{mat_selection}")
 
 A = data["A"].tocoo()
