@@ -19,8 +19,9 @@ folder = "/data/fungal_networks/"
 #mat_filenames = os.listdir(folder)
 #mat_filenames = [filename for filename in mat_filenames if filename[0:1] == "Pp"]
 
-mat_filenames = ["Pp_M_Tokyo_U_N_26h_1.mat", "Pp_M_Tokyo_U_N_26h_2.mat"]
+#mat_filenames = ["Pp_M_Tokyo_U_N_26h_1.mat", "Pp_M_Tokyo_U_N_26h_2.mat"]
 
+"""
 with st.sidebar:
     mat_selection = st.sidebar.selectbox(
         "Please select a .mat file",
@@ -30,17 +31,18 @@ with st.sidebar:
     #    time.sleep(5)
     #st.success("Done!")
     #st.button("Rerun")
+"""
 
-import os
-st.text(os.getcwd())
+#import os
+#st.text(os.getcwd())
 
-data = loadmat(f"{folder}{mat_selection}")
+#data = loadmat(f"{folder}{mat_selection}")
 
-A = data["A"].tocoo()
+#A = data["A"].tocoo()
 
-edges = pd.DataFrame({"source": A.row, "target": A.col, "weight": A.data})
+#edges = pd.DataFrame({"source": A.row, "target": A.col, "weight": A.data})
 
-#edges = pd.read_csv("./../data/sample-network.csv")
+edges = pd.read_csv("../data/sample-network.csv")
 # Filters out very tiny weights for the purpose of a better visualisation
 edges = edges[edges["weight"] >= 1]
 # Changes to the correct format to easily add to networkx
