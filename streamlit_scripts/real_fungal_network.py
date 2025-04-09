@@ -9,10 +9,10 @@ import pandas as pd
 
 import networkx as nx
 
-import pyvista
+from  pyvista import PolyData, Sphere, Spline, Plotter
 import streamlit as st
 
-import stpyvista
+from stpyvista import stpyvista
 
 folder = "../data/fungal_networks/"
 
@@ -63,28 +63,28 @@ for u, v in G.edges:
 
 coords = np.array(coords, dtype="float32")
 
-pyvista.global_theme.allow_empty_mesh = True
+#pyvista.global_theme.allow_empty_mesh = True
 
-plotter = pyvista.Plotter(window_size=[600, 600])
+plotter = Plotter(window_size=[600, 600])
 
 for i in range(len(G.edges)):
-    spline = pyvista.Spline(lines[i], 2).tube(radius=edge_weights[i]/(max(edge_weights)*100))
+    spline = Spline(lines[i], 2).tube(radius=edge_weights[i]/(max(edge_weights)*100))
     plotter.add_mesh(spline, color="red")
 
 #print("Max coord:", coords.max())
 #print("Min Coord:", coords.min())
 
-pdata = pyvista.PolyData(coords)
+pdata = PolyData(coords)
 pdata['orig_sphere'] = np.arange(len(G.nodes))
 
 # create many spheres from the point cloud
 #plotter = pyvista.Plotter(window_size=[600, 600])
-sphere = pyvista.Sphere(radius=0.02, phi_resolution=10, theta_resolution=10)
+sphere = Sphere(radius=0.02, phi_resolution=10, theta_resolution=10)
 pc = pdata.glyph(scale=False, geom=sphere, orient=False)
 plotter.add_mesh(sphere)
 plotter.add_mesh(pc, cmap="Reds")
 
-spline = pyvista.Spline(np.array([[1, 1, 1], [-1, -1, -1]]), 2).tube(radius=0.01)
+spline = Spline(np.array([[1, 1, 1], [-1, -1, -1]]), 2).tube(radius=0.01)
 #st.draw(spline.plot(scalars='arc_length', show_scalar_bar=False))
 
 #plotter.add_mesh(spline, cmap="Reds")
@@ -92,4 +92,4 @@ spline = pyvista.Spline(np.array([[1, 1, 1], [-1, -1, -1]]), 2).tube(radius=0.01
 plotter.camera.zoom(0.6)
 
 # Send to streamlit
-stpyvista.stpyvista(plotter)
+stpyvista(plotter)
