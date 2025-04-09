@@ -33,8 +33,8 @@ with st.sidebar:
     #st.button("Rerun")
 """
 
-#import os
-#st.text(os.getcwd())
+import os
+st.text(os.listdir(os.getcwd()))
 
 #data = loadmat(f"{folder}{mat_selection}")
 
@@ -42,7 +42,7 @@ with st.sidebar:
 
 #edges = pd.DataFrame({"source": A.row, "target": A.col, "weight": A.data})
 
-edges = pd.read_csv("../data/sample-network.csv")
+edges = pd.read_csv("/data/sample-network.csv")
 # Filters out very tiny weights for the purpose of a better visualisation
 edges = edges[edges["weight"] >= 1]
 # Changes to the correct format to easily add to networkx
