@@ -1,4 +1,4 @@
-import os
+#import os
 
 import time
 
@@ -16,8 +16,10 @@ import stpyvista
 
 folder = "../data/fungal_networks/"
 
-mat_filenames = os.listdir(folder)
+#mat_filenames = os.listdir(folder)
 #mat_filenames = [filename for filename in mat_filenames if filename[0:1] == "Pp"]
+
+mat_filenames = ["Pp_M_Tokyo_U_N_26h_1.mat", "Pp_M_Tokyo_U_N_26h_2.mat"]
 
 with st.sidebar:
     mat_selection = st.sidebar.selectbox(
