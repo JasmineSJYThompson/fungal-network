@@ -14,7 +14,7 @@ import streamlit as st
 
 from stpyvista import stpyvista
 
-folder = "../data/fungal_networks/"
+folder = "/data/fungal_networks/"
 
 #mat_filenames = os.listdir(folder)
 #mat_filenames = [filename for filename in mat_filenames if filename[0:1] == "Pp"]
