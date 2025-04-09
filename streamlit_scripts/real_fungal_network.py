@@ -22,20 +22,20 @@ folder = "/data/fungal_networks/"
 
 mat_filenames = ["Pp_M_Tokyo_U_N_26h_1.mat", "Pp_M_Tokyo_U_N_26h_2.mat"]
 
-"""
-with st.sidebar:
-    mat_selection = st.sidebar.selectbox(
-        "Please select a .mat file",
-        (mat_filenames))
 
+#with st.sidebar:
+#    mat_selection = st.sidebar.selectbox(
+#        "Please select a .mat file",
+#        (mat_filenames))
+#
     #with st.spinner("Wait for it...", show_time=True):
     #    time.sleep(5)
     #st.success("Done!")
     #st.button("Rerun")
-"""
+
 
 import os
-st.text(os.listdir(os.getcwd()+"/data/"))
+#st.text(os.listdir(os.getcwd()+"/data/"))
 
 #data = loadmat(f"{folder}{mat_selection}")
 
