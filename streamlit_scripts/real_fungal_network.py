@@ -10,6 +10,16 @@ import streamlit as st
 
 from stpyvista import stpyvista
 
+## Check if xvfb is already running on the machine
+is_xvfb_running = subprocess.run(["pgrep", "Xvfb"], capture_output=True)
+if is_xvfb_running.returncode == 1:
+    if not IS_APP_EMBED:
+        st.toast("Xvfb was not running...", icon="⚠️")
+    pv.start_xvfb()
+else:
+    if not IS_APP_EMBED:
+        st.toast(f"Xvfb is running! \n\n`PID: {is_xvfb_running.stdout.decode('utf-8')}`", icon="📺")
+
 #@st.cache_data
 
 folder = "/data/fungal_networks/"
