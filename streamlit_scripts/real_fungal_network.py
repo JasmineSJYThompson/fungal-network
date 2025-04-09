@@ -1,6 +1,6 @@
 #import os
 
-import time
+#import time
 
 from scipy.io import loadmat
 
@@ -26,10 +26,10 @@ with st.sidebar:
         "Please select a .mat file",
         (mat_filenames))
 
-    with st.spinner("Wait for it...", show_time=True):
-        time.sleep(5)
-    st.success("Done!")
-    st.button("Rerun")
+    #with st.spinner("Wait for it...", show_time=True):
+    #    time.sleep(5)
+    #st.success("Done!")
+    #st.button("Rerun")
 
 data = loadmat(f"{folder}{mat_selection}")
 
