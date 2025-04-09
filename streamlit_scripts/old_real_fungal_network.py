@@ -1,3 +1,7 @@
+#import os
+
+#import time
+
 from scipy.io import loadmat
 
 import numpy as np
@@ -10,14 +14,14 @@ import streamlit as st
 
 from stpyvista import stpyvista
 
-#@st.cache_data
+@st.cache_data
 
 folder = "/data/fungal_networks/"
 
 #mat_filenames = os.listdir(folder)
 #mat_filenames = [filename for filename in mat_filenames if filename[0:1] == "Pp"]
 
-mat_filenames = ["Pp_M_Tokyo_U_N_26h_1.mat", "Pp_M_Tokyo_U_N_26h_2.mat"]
+#mat_filenames = ["Pp_M_Tokyo_U_N_26h_1.mat", "Pp_M_Tokyo_U_N_26h_2.mat"]
 
 """
 with st.sidebar:
