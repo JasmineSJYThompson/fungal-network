@@ -14,6 +14,8 @@ import streamlit as st
 
 from stpyvista import stpyvista
 
+@st.cache_data
+
 folder = "/data/fungal_networks/"
 
 #mat_filenames = os.listdir(folder)
