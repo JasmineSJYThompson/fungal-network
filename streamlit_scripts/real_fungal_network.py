@@ -6,23 +6,14 @@ import pandas as pd
 import networkx as nx
 
 from  pyvista import PolyData, Sphere, Spline, Plotter
+import pyvista as pv
 import streamlit as st
 
 from stpyvista import stpyvista
 
-import subprocess
-
-## Check if xvfb is already running on the machine
-is_xvfb_running = subprocess.run(["pgrep", "Xvfb"], capture_output=True)
-if is_xvfb_running.returncode == 1:
-    if not IS_APP_EMBED:
-        st.toast("Xvfb was not running...", icon="⚠️")
+if "IS_XVFB_RUNNING" not in st.session_state:
     pv.start_xvfb()
-else:
-    if not IS_APP_EMBED:
-        st.toast(f"Xvfb is running! \n\n`PID: {is_xvfb_running.stdout.decode('utf-8')}`", icon="📺")
-
-#@st.cache_data
+    st.session_state.IS_XVFB_RUNNING = True
 
 folder = "/data/fungal_networks/"
 
