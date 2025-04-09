@@ -32,7 +32,7 @@ with st.sidebar:
     #st.button("Rerun")
 
 import os
-print(os.getwd())
+print(os.getcwd())
 
 data = loadmat(f"{folder}{mat_selection}")
 
