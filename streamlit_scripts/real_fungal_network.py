@@ -23,7 +23,6 @@ if  "IS_XVFB_RUNNING" not in st.session_state:
 
 pv.global_theme.allow_empty_mesh = True
 
-@st.cache_data
 def get_mat_filenames():
     mat_filenames = os.listdir(os.getcwd() + FOLDER)
     return mat_filenames
@@ -81,7 +80,6 @@ def get_lines_data(G, coords):
         lines.append(np.array([coords[u - 1], coords[v - 1]], dtype="float32"))
     return lines
 
-@st.cache_resource
 def create_plot(_G, coords, lines, edge_weights):
     plotter = Plotter(window_size=[600, 600])
 
@@ -107,7 +105,6 @@ def create_plot(_G, coords, lines, edge_weights):
     stpyvista(plotter)
     task6.text("Sent")
 
-@st.cache_data
 def draw_selection(mat_selection, network_drawing_layout):
     task1.text("Loading data...")
     edges, coords_3D = load_mat_data(mat_selection)
