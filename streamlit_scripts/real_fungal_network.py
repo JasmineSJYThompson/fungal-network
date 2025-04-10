@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import networkx as nx
 
-from pyvista import PolyData, Sphere, Spline, Plotter
 import pyvista as pv
 import streamlit as st
 
@@ -80,24 +79,36 @@ def get_lines_data(G, coords):
         lines.append(np.array([coords[u - 1], coords[v - 1]], dtype="float32"))
     return lines
 
+def build_tube_splines(lines, edge_weights):
+    max_weight = max(edge_weights)
+    tubes = []
+
+    for coords, weight in zip(lines, edge_weights):
+        spline = pv.Spline(coords, 2)
+        tube = spline.tube(radius=weight / (max_weight * 100))
+        tubes.append(tube)
+
+    # Combine all into a single mesh
+    combined = pv.MultiBlock(tubes).combine()
+    return combined
+
 def create_plot(_G, coords, lines, edge_weights):
-    plotter = Plotter(window_size=[600, 600])
+    plotter = pv.Plotter(off_screen=True, window_size=[600, 600])
 
     task4.text("Drawing spheres...")
-    pdata = PolyData(coords)
+    pdata = pv.PolyData(coords)
     pdata['orig_sphere'] = np.arange(len(_G.nodes))
 
     # create many spheres from the point cloud
     # plotter = pyvista.Plotter(window_size=[600, 600])
-    sphere = Sphere(radius=0.02, phi_resolution=10, theta_resolution=10)
+    sphere = pv.Sphere(radius=0.02, phi_resolution=10, theta_resolution=10)
     pc = pdata.glyph(scale=False, geom=sphere, orient=False)
     # plotter.add_mesh(sphere)
     plotter.add_mesh(pc, cmap="Reds")
 
     task5.text("Drawing lines...")
-    for i in range(len(_G.edges)):
-        spline = Spline(lines[i], 2).tube(radius=edge_weights[i] / (max(edge_weights) * 100))
-        plotter.add_mesh(spline, color="red")
+    tubes = build_tube_splines(lines, edge_weights)
+    plotter.add_mesh(tubes, color="red")
 
     task6.text("Sending...")
     plotter.camera.zoom(0.6)
