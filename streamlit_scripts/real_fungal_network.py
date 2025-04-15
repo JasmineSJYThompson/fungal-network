@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 import networkx as nx
 
-from pyvista import PolyData, Sphere, Spline, Plotter
 import pyvista as pv
 import streamlit as st
 
@@ -34,7 +33,6 @@ def load_mat_data(mat_selection):
     coordinates = data["coordinates"]
 
     edges = pd.DataFrame({"source": A.row, "target": A.col, "weight": A.data})
-    edges = pd.read_csv(os.getcwd() + "/data/sample-network.csv")
     # Filters out very tiny weights for the purpose of a better visualisation
     edges = edges[edges["weight"] >= 1]
     # Changes to the correct format to easily add to networkx
@@ -46,6 +44,18 @@ def load_mat_data(mat_selection):
     coords_3D = {key: [value[0], value[1], np.random.normal(mu, sigma)] for key, value in coords_3D.items()}
 
     return edges, coords_3D
+
+def get_original_coordinates(coordinates, is_3D=False):
+    if is_3D:
+        mu = np.array(coordinates).mean()
+        sigma = np.array(coordinates).std()
+        coords_3D = pd.DataFrame(coordinates).to_dict("index")
+        coords_3D = {key: [value[0], value[1], np.random.normal(mu, sigma)] for key, value in coords_3D.items()}
+        return coords_3D
+    else:
+        coords_2D = pd.DataFrame(coordinates).to_dict("index")
+        coords_2D = {key: [value[0], value[1]] for key, value in coords_2D.items()}
+        return coords_2D
 
 def construct_graph(edges):
     G = nx.Graph()
