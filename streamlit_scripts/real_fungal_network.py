@@ -163,7 +163,6 @@ def draw_selection(mat_selection, network_drawing_layout, is_3D):
         else:
             pos = get_node_positions(network_drawing_layout, G, coords_2D, is_3d=False)
             create_2d_plot_layout(G, pos, edge_weights)
-            st.write("Drawing 2D plot with network layout is not supported yet.")
 
     else:
         task3.text("Processing...")
