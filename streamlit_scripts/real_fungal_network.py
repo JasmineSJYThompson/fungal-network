@@ -17,11 +17,9 @@ FOLDER = "/data/fungal_networks/"
 NETWORK_DRAWING_LAYOUTS = ["spring_layout", "kamada_kawai_layout", "none"] #Added none option
 
 #(platform.system() != "Linux")
-"""
 if  "IS_XVFB_RUNNING" not in st.session_state:
     pv.start_xvfb()
     st.session_state.IS_XVFB_RUNNING = True
-"""
 
 pv.global_theme.allow_empty_mesh = True
 
