@@ -127,7 +127,7 @@ def create_2d_plot(A, coordinates, edges):
         end_coords = coordinates[end]
         ax.plot([start_coords[0], end_coords[0]], [start_coords[1], end_coords[1]], '-', color="black", linewidth=weight*10/max_weight)
     ax.scatter(x=coordinates[:, 0], y=coordinates[:, 1], s=50, c=range(coordinates.shape[0]), cmap="viridis")
-    ax.set_title("Fungal Mushroom Plot")
+    ax.set_title("Fungi Network")
     #ax.axis("off") # can add back in as the numbers are still fairly relevant
     st.pyplot(fig)
 
