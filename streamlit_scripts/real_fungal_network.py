@@ -199,7 +199,7 @@ with st.sidebar:
     generate_layout_button = st.button("Generate layout")
 
 st.title("Plotting Fungal Network Data")
-st.markdown("Data from: A Spatial Database of Fungi, A. Banerjee et al. Available at: [https://www.cs.cornell.edu/~arb/data/spatial-fungi/(https://www.cs.cornell.edu/~arb/data/spatial-fungi/)")
+st.markdown("Data from: https://www.cs.cornell.edu/~arb/data/spatial-fungi/
 
 # Create placeholders for each task
 task1 = st.empty()
