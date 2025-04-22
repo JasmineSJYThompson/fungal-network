@@ -226,7 +226,7 @@ citation = {
     "journal": "Journal of Complex Networks",
     "year": 2016,
     "doi": "10.1093/comnet/cnv034",
-    "url": "https://doi.org/10.1093/comnet/cnv034"
+    "url": "https://doi.org/10.1093/comnet/cnv034",
     "data_url": "https://www.cs.cornell.edu/~arb/data/spatial-fungi/"
 }
 
