@@ -14,7 +14,7 @@ import os
 
 FOLDER = "/data/fungal_networks/"
 #MAT_FILENAMES = ["Pp_M_Tokyo_U_N_26h_1.mat", "Pp_M_Tokyo_U_N_26h_2.mat"
-NETWORK_DRAWING_LAYOUTS = ["spring_layout", "kamada_kawai_layout", "none"] #Added none option
+NETWORK_DRAWING_LAYOUTS = ["none", "spring_layout", "kamada_kawai_layout"] #Added none option
 
 #(platform.system() != "Linux")
 if  "IS_XVFB_RUNNING" not in st.session_state:
@@ -199,7 +199,6 @@ with st.sidebar:
     generate_layout_button = st.button("Generate layout")
 
 st.title("Plotting Fungal Network Data")
-st.markdown("Data from: https://www.cs.cornell.edu/~arb/data/spatial-fungi/")
 
 # Create placeholders for each task
 task1 = st.empty()
@@ -212,16 +211,25 @@ task6 = st.empty()
 if generate_layout_button:
     draw_selection(mat_selection, network_drawing_layout, is_3D)
 
-with st.expander("Additional Citation"):
-    st.markdown("""
-    @article{Lee-2016-CP,
-    doi = {10.1093/comnet/cnv034},
-    url = {https://doi.org/10.1093/comnet/cnv034},
-    year  = {2016},
-    month = {apr},
-    publisher = {Oxford University Press ({OUP})},
-    author = {Sang Hoon Lee and Mark D. Fricker and Mason A. Porter},
-    title = {Mesoscale analyses of fungal networks as an approach for quantifying phenotypic traits},
-    journal = {Journal of Complex Networks}
-    }
-    """)
+# Initial Draw on App Load:
+if 'first_load' not in st.session_state:
+    st.session_state['first_load'] = True
+    draw_selection(mat_selection, network_drawing_layout, is_3D)  # Trigger initial draw
+else:
+    if generate_layout_button:
+        draw_selection(mat_selection, network_drawing_layout, is_3D)
+
+
+citation = {
+    "title": "Mesoscale analyses of fungal networks as an approach for quantifying phenotypic traits",
+    "author": "Sang Hoon Lee and Mark D. Fricker and Mason A. Porter",
+    "journal": "Journal of Complex Networks",
+    "year": 2016,
+    "doi": "10.1093/comnet/cnv034",
+    "url": "https://doi.org/10.1093/comnet/cnv034"
+    "data_url": "https://www.cs.cornell.edu/~arb/data/spatial-fungi/"
+}
+
+
+with st.expander("Citation"):
+    st.json(citation)
