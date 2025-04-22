@@ -208,17 +208,8 @@ task4 = st.empty()
 task5 = st.empty()
 task6 = st.empty()
 
-if generate_layout_button:
-    draw_selection(mat_selection, network_drawing_layout, is_3D)
-
-# Initial Draw on App Load helper
-if 'first_load' not in st.session_state:
-    st.session_state['first_load'] = True
-else:
-    st.session_state['first_load'] = False
-
 # Draws when the button is pressed
-if generate_layout_button or st.session_state['first_load']:
+if generate_layout_button:
     draw_selection(mat_selection, network_drawing_layout, is_3D)
 
 
