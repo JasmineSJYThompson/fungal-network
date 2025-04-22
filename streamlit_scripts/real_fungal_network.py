@@ -194,11 +194,12 @@ with st.sidebar:
 
     network_drawing_layout = st.sidebar.selectbox(
         "Please select a network drawing layout",
-        (NETWORK_DRAWING_LAYOUTS))
+        (NETWORK_DRAWING_LAYOUTS), id=2)
 
     generate_layout_button = st.button("Generate layout")
 
 st.title("Plotting Fungal Network Data")
+st.markdown("Data from: A Spatial Database of Fungi, A. Banerjee et al. Available at: [https://www.cs.cornell.edu/~arb/data/spatial-fungi/(https://www.cs.cornell.edu/~arb/data/spatial-fungi/)")
 
 # Create placeholders for each task
 task1 = st.empty()
@@ -210,3 +211,17 @@ task6 = st.empty()
 
 if generate_layout_button:
     draw_selection(mat_selection, network_drawing_layout, is_3D)
+
+with st.expander("Additional Citation"):
+    st.markdown("""
+    @article{Lee-2016-CP,
+    doi = {10.1093/comnet/cnv034},
+    url = {https://doi.org/10.1093/comnet/cnv034},
+    year  = {2016},
+    month = {apr},
+    publisher = {Oxford University Press ({OUP})},
+    author = {Sang Hoon Lee and Mark D. Fricker and Mason A. Porter},
+    title = {Mesoscale analyses of fungal networks as an approach for quantifying phenotypic traits},
+    journal = {Journal of Complex Networks}
+    }
+    """)
