@@ -194,7 +194,7 @@ with st.sidebar:
 
     network_drawing_layout = st.sidebar.selectbox(
         "Please select a network drawing layout",
-        (NETWORK_DRAWING_LAYOUTS), index=2)
+        NETWORK_DRAWING_LAYOUTS, index=2)
 
     generate_layout_button = st.button("Generate layout")
 
